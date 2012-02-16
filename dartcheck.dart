@@ -62,7 +62,7 @@ forAll(property, generators) {
 
 		print("Test case: ${testCase}");
 
-		// With help from Dart
+		// Awaiting (apply) or (curry) implementation in Dart.
 		// http://www.dartlang.org/articles/emulating-functions/
 		var result = property.call.apply(testCase);
 
