@@ -5,23 +5,25 @@ genBool() {
 }
 
 genInt(max) {
-	var val = (Math.random() * max).toInt();
+	var i = (Math.random() * max).toInt();
 
 	if (genBool()) {
-		val *= -1;
+		return i * -1;
 	}
-
-	return val;
+	else {
+		return i;
+	}
 }
 
 genDouble(max) {
-	var val = Math.random() * max;
+	var d = Math.random() * max;
 
 	if (genBool()) {
-		val *= -1;
+		return d * -1;
 	}
-
-	return val;
+	else {
+		return d;
+	}
 }
 
 genByte() {
@@ -46,4 +48,35 @@ genCharCode() {
 
 genString() {
 	return new String.fromCharCodes(genList(genCharCode));
+}
+
+forAll(property, generators) {
+	var passedAllTests = true;
+
+	for (var i = 0; i < 100; i++) {
+		var testCase = [];
+
+		for (var j = 0; j < generators.length; j++) {
+			testCase.add(generators[j]());
+		}
+
+		print("Test case: ${testCase}");
+
+		// With help from Dart
+		// http://www.dartlang.org/articles/emulating-functions/
+		var result = property.call.apply(testCase);
+
+		if (!result) {
+			passedAllTests = false;
+
+			print("*** Failed!");
+			print("${testCase}");
+
+			break;
+		}
+	}
+
+	if (passedAllTests) {
+		print("+++ OK, passed 100 tests");
+	}
 }

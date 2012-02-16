@@ -2,11 +2,26 @@
 
 #import("dartcheck.dart");
 
-main() {
-	print("Random bool: ${genBool()}");
-	print("Random int: ${genInt(10000)}");
-	print("Random double: ${genDouble(10000)}");
-	print("Random byte: ${genByte()}");
+propEven(i) {
+	return i % 2 == 0;
+}
 
-	print("Random string: ${genString()}");
+genSmall() {
+	return genInt(1000);
+}
+
+genEven() {
+	var i = genSmall(1000);
+
+	if (i % 2 != 0) {
+		return i + 1;
+	}
+	else {
+		return i;
+	}
+}
+
+main() {
+	forAll(propEven, [genSmall]);
+	forAll(propEven, [genEven]);
 }
