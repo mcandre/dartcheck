@@ -8,6 +8,12 @@ http://www.yellosoft.us/quickcheck
 
 	$ dart example.dart
 	Random bool: false
+	Random int: 1267
+	Random double: -5941.822277
+	Random byte: 254
+	Random string: i>GYMlw9*B|;F5atq8o?GYiR0(
+	&	J~sp8F5EIZ2DYzI6).
+	                          &AX!@Xz
 
 ## WARNING
 
